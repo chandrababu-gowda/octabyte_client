@@ -22,7 +22,7 @@ export default function PurchasePage() {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:4000/api/purchase?stock=${searchText}`
+        `https://octabyte-server.onrender.com/api/purchase?stock=${searchText}`
       );
       const json = await res.json();
 
@@ -44,17 +44,20 @@ export default function PurchasePage() {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/purchase", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          symbol: data.symbol,
-          name: data.name,
-          price: data.currentMarketPrice,
-          quantity: quantity,
-          exchangeName: data.exchangeName,
-        }),
-      });
+      const res = await fetch(
+        "https://octabyte-server.onrender.com/api/purchase",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            symbol: data.symbol,
+            name: data.name,
+            price: data.currentMarketPrice,
+            quantity: quantity,
+            exchangeName: data.exchangeName,
+          }),
+        }
+      );
 
       if (res.ok) {
         message.success("Order placed successfully!");

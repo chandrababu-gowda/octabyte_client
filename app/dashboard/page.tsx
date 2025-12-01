@@ -30,7 +30,9 @@ export default function Dashboard() {
 
   const fetchPortfolio = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/dashboard");
+      const res = await axios.get(
+        "https://octabyte-server.onrender.com/api/dashboard"
+      );
       setStocks(res.data.data);
       setLoading(false);
     } catch (err) {
@@ -40,7 +42,9 @@ export default function Dashboard() {
 
   const updatePrices = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/dashboard/update");
+      const res = await axios.get(
+        "https://octabyte-server.onrender.com/api/dashboard/update"
+      );
       const updatedPrices = res.data.data;
 
       setStocks((prev) =>
@@ -60,7 +64,9 @@ export default function Dashboard() {
 
   const sellStock = async (symbol: string) => {
     try {
-      await axios.post("http://localhost:4000/api/sell", { symbol });
+      await axios.post("https://octabyte-server.onrender.com/api/sell", {
+        symbol,
+      });
       fetchPortfolio();
     } catch (err) {
       console.error("Error selling stock:", err);
